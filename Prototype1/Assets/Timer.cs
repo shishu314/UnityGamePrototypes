@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
 
     void ChangeTurn()
     {
-        float randomTime = Random.Range(3, 10);
+        float randomTime = Random.Range(10, 20);
         Player1Turn = !Player1Turn;
         Color32 color = Player1Turn ? new Color32(29, 188, 212, 255) : new Color32(69, 209, 21, 255);
         GetComponent<SpriteRenderer>().color = color;
