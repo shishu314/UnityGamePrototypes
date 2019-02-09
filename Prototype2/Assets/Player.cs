@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if(Sides > 3 & Sides < 9)
+            if(Sides > 3)
             {
                 --Sides;
                 Renderer.sprite = polygons[Sides];
