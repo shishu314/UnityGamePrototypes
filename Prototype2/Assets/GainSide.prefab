@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2365941373180823327}
   - component: {fileID: 2365941373180823296}
   - component: {fileID: 2365941373180823326}
-  - component: {fileID: 2530419880986052434}
-  m_Layer: 0
+  - component: {fileID: 1597399373480382825}
+  - component: {fileID: 4328225425048895234}
+  m_Layer: 8
   m_Name: GainSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +103,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2530419880986052434
+--- !u!58 &1597399373480382825
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2365941373180823297}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &4328225425048895234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SpawnEntities : MonoBehaviour
 {
-    [SerializeField]
     public GameObject LoseSide;
-    [SerializeField]
     public GameObject GainSide;
+    public GameObject Player;
     public float spawnTime;
     private float timer = 0;
     // Start is called before the first frame update

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6213634509966089385}
   - component: {fileID: 6213634509966089386}
   - component: {fileID: 6213634509966089384}
-  - component: {fileID: 7190625526208151670}
-  m_Layer: 0
+  - component: {fileID: 3158274688102535932}
+  m_Layer: 8
   m_Name: LoseSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7190625526208151670
+--- !u!114 &3158274688102535932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
