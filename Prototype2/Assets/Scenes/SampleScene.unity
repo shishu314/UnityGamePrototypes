@@ -397,4 +397,5 @@ MonoBehaviour:
     type: 3}
   GainSide: {fileID: 2365941373180823297, guid: e96c27df3a0029043a6a7493d62216ef,
     type: 3}
+  Player: {fileID: 883196681}
   spawnTime: 0.5

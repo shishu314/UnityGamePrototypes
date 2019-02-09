@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     public Sprite[] polygons;
-    private int Sides { get; set; } = 4;
+    public int Sides { get; set; } = 4;
     private SpriteRenderer Renderer { get; set; }
     private Vector2 targetPosition;
     private Vector2 LastPosition { get; set; }
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if(Sides > 3)
+            if(Sides > 3 & Sides < 9)
             {
                 --Sides;
                 Renderer.sprite = polygons[Sides];
