@@ -8,7 +8,8 @@ public class SpawnEntities : MonoBehaviour
     public GameObject GainSide;
     public Player Player;
     public float spawnTime;
-    private float timer = 0;
+    private float spawnTimer = 0;
+    private bool Reverse { get; set; } = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,24 +19,27 @@ public class SpawnEntities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > spawnTime)
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer > spawnTime)
         {
             SpawnRandom();
-            timer = 0;
+            spawnTimer = 0;
         }
     }
 
     public void SpawnRandom()
     {
         var rand = Random.value;
-        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Screen.height, Camera.main.farClipPlane / 2));
-        if(rand > Player.Sides / 20.0)
+        var screenPosition = Reverse ? Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), 0, Camera.main.farClipPlane / 2)) : Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Screen.height, Camera.main.farClipPlane / 2));
+        var Entity = (rand > Player.Sides / 10.0) ? GainSide : LoseSide;
+        var obj = Instantiate(Entity, screenPosition, Quaternion.identity);
+        if(Reverse)
         {
-            Instantiate(GainSide, screenPosition, Quaternion.identity);
-        } else
-        {
-            Instantiate(LoseSide, screenPosition, Quaternion.identity);
+            obj.GetComponent<Rigidbody2D>().gravityScale *= -1;
+            var transform = obj.GetComponent<Transform>();
+            var yFlip = transform.localScale;
+            yFlip.y *= -1;
+            obj.GetComponent<Transform>().localScale = yFlip;
         }
     }
 }
