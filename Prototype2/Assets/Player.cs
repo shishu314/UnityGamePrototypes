@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
     public Sprite[] polygons;
-    public int Sides { get; set; } = 4;
+    public int Sides;
     private SpriteRenderer Renderer { get; set; }
     private Vector2 targetPosition;
     private Vector2 LastPosition { get; set; }
