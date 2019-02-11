@@ -443,3 +443,4 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 883196681}
   spawnTime: 0.5
+  reverseTime: 10

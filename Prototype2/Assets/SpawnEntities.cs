@@ -9,7 +9,9 @@ public class SpawnEntities : MonoBehaviour
     public Player Player;
     public float spawnTime;
     private float spawnTimer = 0;
-    private bool Reverse { get; set; } = true;
+    private float reverseTimer = 0;
+    public float reverseTime;
+    private bool Reverse { get; set; } = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,12 @@ public class SpawnEntities : MonoBehaviour
         {
             SpawnRandom();
             spawnTimer = 0;
+        }
+        reverseTimer += Time.deltaTime;
+        if (reverseTimer > reverseTime)
+        {
+            Reverse = !Reverse;
+            reverseTimer = 0;
         }
     }
 
