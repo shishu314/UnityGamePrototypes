@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     private Rigidbody2D body;
     public float movementSpeed;
@@ -25,9 +25,9 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal2");
         HandleMovement(horizontal);
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
         }
@@ -48,7 +48,7 @@ public class Player1 : MonoBehaviour
         {
             onGround = true;
         }
-        if(col.gameObject.tag == "ChangeCharge")
+        if (col.gameObject.tag == "ChangeCharge")
         {
             charge = !charge;
             SetCharge();
@@ -57,7 +57,7 @@ public class Player1 : MonoBehaviour
 
     private void Jump()
     {
-        if(onGround)
+        if (onGround)
         {
             body.AddForce(new Vector2(0, body.mass * 7.5f), ForceMode2D.Impulse);
             onGround = false;
