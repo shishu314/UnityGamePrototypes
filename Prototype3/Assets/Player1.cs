@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player1 : MonoBehaviour
 {
@@ -62,5 +63,10 @@ public class Player1 : MonoBehaviour
             body.AddForce(new Vector2(0, body.mass * 7.5f), ForceMode2D.Impulse);
             onGround = false;
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Lose", LoadSceneMode.Single);
     }
 }
