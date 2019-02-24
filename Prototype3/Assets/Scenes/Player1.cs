@@ -3,32 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player2 : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     private Rigidbody2D body;
     public float movementSpeed;
-    public Sprite[] sprites;
-    public bool charge;
     private bool onGround = false;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        SetCharge();
-    }
-
-    void SetCharge()
-    {
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = charge ? sprites[0] : sprites[1];
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal2");
+        float horizontal = Input.GetAxis("Horizontal");
         HandleMovement(horizontal);
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
         }
@@ -49,11 +40,6 @@ public class Player2 : MonoBehaviour
         {
             onGround = true;
         }
-        if (col.gameObject.tag == "ChangeCharge")
-        {
-            charge = !charge;
-            SetCharge();
-        }
     }
 
     private void Jump()
@@ -63,10 +49,5 @@ public class Player2 : MonoBehaviour
             body.AddForce(new Vector2(0, body.mass * 7.5f), ForceMode2D.Impulse);
             onGround = false;
         }
-    }
-
-    private void OnBecameInvisible()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Lose", LoadSceneMode.Single);
     }
 }

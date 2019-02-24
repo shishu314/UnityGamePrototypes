@@ -3,41 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player1 : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     private Rigidbody2D body;
     public float movementSpeed;
-    public Sprite[] sprites;
-    public bool charge;
     private bool onGround = false;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        SetCharge();
-    }
-
-    void SetCharge()
-    {
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = charge ? sprites[0] : sprites[1];
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal2");
         HandleMovement(horizontal);
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
         }
-    }
-
-    private void HandleMovement(float horizontal)
-    {
-        Vector2 force = new Vector2(horizontal * movementSpeed, 0);
-        body.AddForce(force);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -49,24 +34,20 @@ public class Player1 : MonoBehaviour
         {
             onGround = true;
         }
-        if(col.gameObject.tag == "ChangeCharge")
-        {
-            charge = !charge;
-            SetCharge();
-        }
+    }
+
+    private void HandleMovement(float horizontal)
+    {
+        Vector2 force = new Vector2(horizontal * movementSpeed, 0);
+        body.AddForce(force);
     }
 
     private void Jump()
     {
-        if(onGround)
+        if (onGround)
         {
             body.AddForce(new Vector2(0, body.mass * 7.5f), ForceMode2D.Impulse);
             onGround = false;
         }
-    }
-
-    private void OnBecameInvisible()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Lose", LoadSceneMode.Single);
     }
 }
