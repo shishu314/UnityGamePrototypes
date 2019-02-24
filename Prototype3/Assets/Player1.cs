@@ -13,6 +13,11 @@ public class Player1 : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        SetCharge();
+    }
+
+    void SetCharge()
+    {
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = charge ? sprites[0] : sprites[1];
     }
@@ -43,13 +48,18 @@ public class Player1 : MonoBehaviour
         {
             onGround = true;
         }
+        if(col.gameObject.tag == "ChangeCharge")
+        {
+            charge = !charge;
+            SetCharge();
+        }
     }
 
     private void Jump()
     {
         if(onGround)
         {
-            body.AddForce(new Vector2(0, body.mass * 5), ForceMode2D.Impulse);
+            body.AddForce(new Vector2(0, body.mass * 10), ForceMode2D.Impulse);
             onGround = false;
         }
     }
