@@ -44,7 +44,7 @@ public class Player2 : MonoBehaviour
         var collidedBody = col.gameObject.GetComponent<Rigidbody2D>();
         var collidedObjectPosition = col.gameObject.GetComponent<Transform>().position;
         var gameObjPosition = gameObject.GetComponent<Transform>().position;
-        if (collidedBody.bodyType == RigidbodyType2D.Static && collidedObjectPosition.y < gameObjPosition.y)
+        if (collidedObjectPosition.y < gameObjPosition.y)
         {
             onGround = true;
         }
