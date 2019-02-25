@@ -11,14 +11,13 @@ public class Player1 : MonoBehaviour
     public Player2 player2;
     public float shakeTime = 0.0f;
     public bool shouldShake = false;
-    private int correctCount = 0;
+    public int correctCount = 0;
     void Start()
     {
         startingPosition = GetComponent<Transform>().position;
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    
+    void Update()
     {
         if (!referee.player1Victory && !referee.player2Victory)
         {

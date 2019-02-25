@@ -41,5 +41,10 @@ public class Referee : MonoBehaviour
             rot2.z = 0;
             player2.GetComponent<Transform>().eulerAngles = rot2;
         }
+        if(player1Victory || player2Victory)
+        {
+            player1.correctCount = 0;
+            player2.correctCount = 0;
+        }
     }
 }

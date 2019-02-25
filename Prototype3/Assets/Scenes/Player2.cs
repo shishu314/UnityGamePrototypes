@@ -16,9 +16,8 @@ public class Player2 : MonoBehaviour
     {
         startingPosition = GetComponent<Transform>().position;
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    
+    void Update()
     {
         if (!referee.player1Victory && !referee.player2Victory)
         {
