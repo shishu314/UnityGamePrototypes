@@ -5,49 +5,96 @@ using UnityEngine.SceneManagement;
 
 public class Player1 : MonoBehaviour
 {
-    private Rigidbody2D body;
-    public float movementSpeed;
-    private bool onGround = false;
-    // Start is called before the first frame update
+    public Referee referee;
+    public LinkedList<int> keys;
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        HandleMovement(horizontal);
+        if (!referee.player1Victory && !referee.player2Victory)
+        {
+            OrientArrow();
+            KeyCapture();
+        }
+    }
+
+    void OrientArrow()
+    {
+        var transform = GetComponent<Transform>();
+        var currKey = keys.First.Value;
+        var rot = transform.eulerAngles;
+        switch(currKey)
+        {
+            case 0:
+                rot.z = 0;
+                break;
+            case 1:
+                rot.z = 90;
+                break;
+            case 2:
+                rot.z = 180;
+                break;
+            case 3:
+                rot.z = 270;
+                break;
+            default:
+                break;
+        }
+        transform.eulerAngles = rot;
+    }
+
+    void KeyCapture()
+    {
+        var first = keys.First.Value;
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Jump();
+            if(first == 0)
+            {
+                keys.RemoveFirst();
+            } else
+            {
+                keys.AddLast(Random.Range(0, 4));
+            }
         }
-    }
-
-    private void HandleMovement(float horizontal)
-    {
-        Vector2 force = new Vector2(horizontal * movementSpeed, 0);
-        body.AddForce(force);
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        var collidedBody = col.gameObject.GetComponent<Rigidbody2D>();
-        var collidedObjectPosition = col.gameObject.GetComponent<Transform>().position;
-        var gameObjPosition = gameObject.GetComponent<Transform>().position;
-        if (collidedObjectPosition.y < gameObjPosition.y)
+        else if (Input.GetKeyDown(KeyCode.S))
         {
-            onGround = true;
+            if (first == 2)
+            {
+                keys.RemoveFirst();
+            }
+            else
+            {
+                keys.AddLast(Random.Range(0, 4));
+            }
         }
-    }
-
-    private void Jump()
-    {
-        if (onGround)
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-            body.AddForce(new Vector2(0, body.mass * 7.5f), ForceMode2D.Impulse);
-            onGround = false;
+            if (first == 1)
+            {
+                keys.RemoveFirst();
+            }
+            else
+            {
+                keys.AddLast(Random.Range(0, 4));
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (first == 3)
+            {
+                keys.RemoveFirst();
+            }
+            else
+            {
+                keys.AddLast(Random.Range(0, 4));
+            }
+        }
+        if(keys.Count == 0)
+        {
+            referee.player1Victory = true;
         }
     }
 }
