@@ -10,6 +10,8 @@ public class Player2 : MonoBehaviour
     public Vector3 startingPosition;
     public float shakeTime = 0.0f;
     public bool shouldShake = false;
+    public Player1 player1;
+    public int correctCount = 0;
     void Start()
     {
         startingPosition = GetComponent<Transform>().position;
@@ -69,9 +71,11 @@ public class Player2 : MonoBehaviour
             if (first == 0)
             {
                 keys.RemoveFirst();
+                correctCount += 1;
             }
             else
             {
+                correctCount = 0;
                 keys.AddLast(Random.Range(0, 4));
                 shouldShake = true;
             }
@@ -81,9 +85,11 @@ public class Player2 : MonoBehaviour
             if (first == 2)
             {
                 keys.RemoveFirst();
+                correctCount += 1;
             }
             else
             {
+                correctCount = 0;
                 keys.AddLast(Random.Range(0, 4));
                 shouldShake = true;
             }
@@ -93,9 +99,11 @@ public class Player2 : MonoBehaviour
             if (first == 1)
             {
                 keys.RemoveFirst();
+                correctCount += 1;
             }
             else
             {
+                correctCount = 0;
                 keys.AddLast(Random.Range(0, 4));
                 shouldShake = true;
             }
@@ -105,12 +113,19 @@ public class Player2 : MonoBehaviour
             if (first == 3)
             {
                 keys.RemoveFirst();
+                correctCount += 1;
             }
             else
             {
+                correctCount = 0;
                 keys.AddLast(Random.Range(0, 4));
                 shouldShake = true;
             }
+        }
+        if (correctCount == 4)
+        {
+            player1.keys.AddFirst(Random.Range(0, 4));
+            correctCount = 0;
         }
         if (keys.Count == 0)
         {
