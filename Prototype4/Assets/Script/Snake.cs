@@ -13,7 +13,7 @@ public class Snake : MonoBehaviour {
 
 	// Current Movement Direction
 	// (by default it moves to the right)
-	Vector2 dir = Vector2.right;
+	Vector2 dir;
 
 	// Keep Track of Tail
 	List<Transform> tail = new List<Transform>();
@@ -26,15 +26,27 @@ public class Snake : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// Move in a new Direction?
-		if (Input.GetKey (KeyCode.RightArrow))
-			dir = Vector2.right;
-		else if (Input.GetKey (KeyCode.DownArrow))
-			dir = -Vector2.up;    // '-up' means 'down'
-		else if (Input.GetKey (KeyCode.LeftArrow))
-			dir = -Vector2.right; // '-right' means 'left'
-		else if (Input.GetKey (KeyCode.UpArrow))
-			dir = Vector2.up;
+        // Move in a new Direction?
+        if (Input.GetKey(KeyCode.RightArrow))
+            if (dir != Vector2.left || tail.Count == 0)
+                dir = Vector2.right;
+            else
+                ReverseDirection();
+        else if (Input.GetKey(KeyCode.DownArrow))
+            if (dir != Vector2.up || tail.Count == 0)
+                dir = -Vector2.up;    // '-up' means 'down'
+            else
+                ReverseDirection();
+        else if (Input.GetKey(KeyCode.LeftArrow))
+            if (dir != Vector2.right || tail.Count == 0)
+                dir = -Vector2.right; // '-right' means 'left'
+            else
+                ReverseDirection();
+        else if (Input.GetKey(KeyCode.UpArrow))
+            if (dir != Vector2.down || tail.Count == 0)
+                dir = Vector2.up;
+            else
+                ReverseDirection();
 	}
 
 	void Move() {
@@ -65,6 +77,18 @@ public class Snake : MonoBehaviour {
 				tail.RemoveAt (tail.Count - 1);
 		}
 	}
+
+    void ReverseDirection()
+    {
+        var oldTail = tail.Last();
+        var oldTailPos = oldTail.position;
+        tail.RemoveAt(tail.Count - 1);
+        oldTail.position = transform.position;
+        tail.Reverse();
+        tail.Add(oldTail);
+        transform.position = oldTailPos;
+        dir = -dir;
+    }
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		// Food?
