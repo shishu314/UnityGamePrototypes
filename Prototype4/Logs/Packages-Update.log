@@ -1,8 +1,8 @@
 
-=== Sat Mar  2 10:37:23 2019
+=== Sat Mar  2 20:28:16 2019
 
 Packages were changed.
-Update Mode: resetToDefaultDependencies
+Update Mode: mergeDefaultDependencies
 
 The following packages were added:
   com.unity.analytics@3.2.2
