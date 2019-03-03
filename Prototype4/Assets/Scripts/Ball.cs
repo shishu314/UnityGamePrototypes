@@ -9,7 +9,11 @@ public class Ball : MonoBehaviour
     float radius;
     public int numCollisionLeft;
     public GameObject textFab;
+    public Sprite explosion;
+    bool exploded = false;
     GameObject text;
+    float explosionCount = 0;
+    int numExpand = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +28,28 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (exploded)
+        {
+            Direction = Vector2.zero;
+            explosionCount += Time.deltaTime;
+            if (explosionCount > 1.0)
+            {
+                explosionCount = 0.0f;
+                var scale = transform.localScale;
+                scale.Scale(new Vector3(2.0f, 2.0f, 1.0f));
+                transform.localScale = scale;
+                numExpand += 1;
+            }
+            if (numExpand == 4)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         bool Collided = false;
         transform.Translate(Direction * speed * Time.deltaTime);
-        text.transform.Translate(Direction * speed * Time.deltaTime);
+        if(!exploded)
+            text.transform.Translate(Direction * speed * Time.deltaTime);
 
         if (transform.position.y < GameManager.bottomLeft.y + radius && Direction.y < 0)
         {
@@ -52,16 +75,17 @@ public class Ball : MonoBehaviour
             Collided = true;
         }
 
-        if(Collided)
+        if(Collided && !exploded)
         {
             numCollisionLeft -= 1;
             text.GetComponent<TextMesh>().text = numCollisionLeft.ToString();
+            if(numCollisionLeft == 0)
+            {
+                GetComponent<SpriteRenderer>().sprite = explosion;
+                Destroy(text);
+                exploded = true;
+            }
         }
-    }
-
-    void Explode()
-    {
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -81,6 +105,18 @@ public class Ball : MonoBehaviour
                 Direction.x *= -1;
                 numCollisionLeft -= 1;
                 text.GetComponent<TextMesh>().text = numCollisionLeft.ToString();
+            }
+
+            if (numCollisionLeft == 0)
+            {
+                GetComponent<SpriteRenderer>().sprite = explosion;
+                Destroy(text);
+                exploded = true;
+            }
+
+            if(exploded)
+            {
+                Destroy(other.gameObject);
             }
         }
     }

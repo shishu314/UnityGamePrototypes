@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  numCollisionLeft: 50
+  numCollisionLeft: 5
   textFab: {fileID: 849306571400076316, guid: 06d3a07ae1089e244ac0fed891de4448, type: 3}
+  explosion: {fileID: 21300000, guid: e4d081adda0f47949b995e078572ff53, type: 3}
 --- !u!222 &9154568304592704400
 CanvasRenderer:
   m_ObjectHideFlags: 0
