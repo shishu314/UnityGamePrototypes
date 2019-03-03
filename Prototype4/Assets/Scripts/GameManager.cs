@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
         bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         topRight = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
-        Instantiate(ball);
+        Ball Ball = Instantiate(ball);
+        Ball.numCollisionLeft = Random.Range(20, 70);
         Paddle Paddle1 = Instantiate(paddle);
         Paddle Paddle2 = Instantiate(paddle);
         Paddle1.Init(true);
