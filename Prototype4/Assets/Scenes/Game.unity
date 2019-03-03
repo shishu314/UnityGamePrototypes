@@ -239,4 +239,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 3212132604208487491, guid: 9fc7effa4b4a2c6428007d2cefa3167c, type: 3}
   paddle: {fileID: 7635176967820496512, guid: 0ea93794485117d43b0293e1ef43ac95, type: 3}
-  text: {fileID: 849306571400076316, guid: 06d3a07ae1089e244ac0fed891de4448, type: 3}
