@@ -74,13 +74,17 @@ public class StageControl : MonoBehaviour
         GenerateTile();
         if(player.x == attackX && player.y == attackY)
         {
-            tiles[attackX, attackY].State = Tile.TileState.Neutral;
+            tiles[attackX, attackY].Neutralize();
             attackX = attackY = -1;
             bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - 100, 0, bossHealthBar.TotalHP);
         }
         if (tiles[player.x, player.y].State != Tile.TileState.Neutral && tiles[player.x, player.y].StateCount >= 2.0f)
         {
             playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
+            if (attackX >= 0 && attackY >= 0) {
+                tiles[attackX, attackY].Neutralize();
+                attackX = attackY = -1;
+            }
         }
         if(bossHealthBar.HP == 0)
             SceneManager.LoadScene("Win", LoadSceneMode.Single);
