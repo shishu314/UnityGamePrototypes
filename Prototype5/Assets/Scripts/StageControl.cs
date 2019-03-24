@@ -10,6 +10,7 @@ public class StageControl : MonoBehaviour
     public Player player;
     public BossHPBar bossHealthBar;
     public PlayerHPBar playerHealthBar;
+    public GameObject playerAttackText;
     public int attackX;
     public int attackY;
     // Start is called before the first frame update
@@ -68,27 +69,56 @@ public class StageControl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckPlayerAttack()
     {
-        GenerateTile();
-        if(player.x == attackX && player.y == attackY)
+        if (player.x == attackX && player.y == attackY)
         {
             tiles[attackX, attackY].Neutralize();
             attackX = attackY = -1;
-            bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - 100, 0, bossHealthBar.TotalHP);
+            bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - player.GetAttackPower(), 0, bossHealthBar.TotalHP);
         }
+    }
+
+    void CheckPlayerInHazard()
+    {
         if (tiles[player.x, player.y].State != Tile.TileState.Neutral && tiles[player.x, player.y].StateCount >= 2.0f)
         {
             playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
-            if (attackX >= 0 && attackY >= 0) {
+            if (attackX >= 0 && attackY >= 0)
+            {
                 tiles[attackX, attackY].Neutralize();
                 attackX = attackY = -1;
             }
         }
-        if(bossHealthBar.HP == 0)
+    }
+
+    void CheckGameOver()
+    {
+        if (bossHealthBar.HP == 0)
             SceneManager.LoadScene("Win", LoadSceneMode.Single);
-        if(playerHealthBar.HP == 0)
+        if (playerHealthBar.HP == 0)
             SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+    }
+
+    void SetAttackPower()
+    {
+        var TextMesh = playerAttackText.GetComponent<TextMesh>();
+        if (attackX >= 0 && attackY >= 0)
+        {
+            TextMesh.text = player.GetAttackPower().ToString();
+        } else
+        {
+            TextMesh.text = "0";
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        GenerateTile();
+        SetAttackPower();
+        CheckPlayerAttack();
+        CheckPlayerInHazard();
+        CheckGameOver();
     }
 }

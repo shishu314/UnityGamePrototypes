@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public int x;
     public int y;
+    public int baseAttack = 60;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,5 +58,10 @@ public class Player : MonoBehaviour
     bool InBounds(Vector3 Coordinates)
     {
         return Coordinates.x >= -7.5 && Coordinates.x <= 6.5 && Coordinates.y >= -4.5 && Coordinates.y <= -0.5;
+    }
+
+    public float GetAttackPower()
+    {
+        return baseAttack;
     }
 }
