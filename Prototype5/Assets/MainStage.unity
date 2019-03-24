@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951f225eb6b47b941960b2497c876fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 6458489121556728452, guid: bd676da8deea9114a88773dc4953720c, type: 3}
+  tile: {fileID: 2005693870156808769, guid: bd676da8deea9114a88773dc4953720c, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
