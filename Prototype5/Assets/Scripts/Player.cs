@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
     public int x;
     public int y;
     public int baseAttack = 60;
+    public HashSet<KeyValuePair<int, int>> steps;
     // Start is called before the first frame update
     void Start()
     {
-        
+        steps = new HashSet<KeyValuePair<int, int>>();
     }
 
     // Update is called once per frame
@@ -62,6 +63,11 @@ public class Player : MonoBehaviour
 
     public float GetAttackPower()
     {
-        return baseAttack;
+        var multiplier = 1.0f;
+        foreach(var i in steps)
+        {
+            multiplier *= 1.1f;
+        }
+        return Mathf.Round(multiplier * baseAttack);
     }
 }

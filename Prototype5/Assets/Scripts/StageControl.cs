@@ -39,7 +39,7 @@ public class StageControl : MonoBehaviour
             var x = Random.Range(0, 15);
             var y = Random.Range(0, 5);
             tiles[x, y].StateCount = 0.0f;
-            if (rand < 4)
+            if (rand < 4 && x != attackX && y != attackY)
             {
                 var stateRand = Random.Range(1, 4);
                 switch (stateRand)
@@ -76,6 +76,7 @@ public class StageControl : MonoBehaviour
             tiles[attackX, attackY].Neutralize();
             attackX = attackY = -1;
             bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - player.GetAttackPower(), 0, bossHealthBar.TotalHP);
+            player.steps = new HashSet<KeyValuePair<int, int>>();
         }
     }
 
@@ -88,6 +89,7 @@ public class StageControl : MonoBehaviour
             {
                 tiles[attackX, attackY].Neutralize();
                 attackX = attackY = -1;
+                player.steps = new HashSet<KeyValuePair<int, int>>();
             }
         }
     }
@@ -105,6 +107,7 @@ public class StageControl : MonoBehaviour
         var TextMesh = playerAttackText.GetComponent<TextMesh>();
         if (attackX >= 0 && attackY >= 0)
         {
+            player.steps.Add(new KeyValuePair<int, int>(player.x, player.y));
             TextMesh.text = player.GetAttackPower().ToString();
         } else
         {
