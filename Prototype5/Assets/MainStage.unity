@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 902348899}
   - component: {fileID: 902348898}
   m_Layer: 0
-  m_Name: HPBarBackground
+  m_Name: BossHPBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 1747010917}
   - component: {fileID: 1747010919}
   m_Layer: 0
-  m_Name: HPBar
+  m_Name: BossHPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

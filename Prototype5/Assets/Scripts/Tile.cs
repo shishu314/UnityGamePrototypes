@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileState : MonoBehaviour
+public class Tile : MonoBehaviour
 {
-    public string State;
+    public TileState State;
     public float StateCount;
+    public enum TileState
+    {
+        Neutral,
+        Water,
+        Lava,
+        Poison,
+        Attack
+    }
     // Start is called before the first frame update
     void Start()
     {
-        State = "Neutral";
+        State = TileState.Neutral;
         StateCount = 0.0f;
     }
 
@@ -20,19 +28,19 @@ public class TileState : MonoBehaviour
         Color color;
         switch(State)
         {
-            case "Water":
+            case TileState.Water:
                 var blueness = Mathf.Clamp(StateCount, 0.0f, 3.0f)/3.0f;
                 color = new Color(0, 0, blueness);
                 break;
-            case "Lava":
+            case TileState.Lava:
                 var redness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
                 color = new Color(redness, 0, 0);
                 break;
-            case "Poison":
+            case TileState.Poison:
                 var greeness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
                 color = new Color(0, greeness, 0);
                 break;
-            case "Attack":
+            case TileState.Attack:
                 color = Color.black;
                 break;
             default:
@@ -40,12 +48,12 @@ public class TileState : MonoBehaviour
                 break;
         }
         spriteRenderer.color = color;
-        if(State != "Neutral")
+        if(State != TileState.Neutral)
         {
             StateCount += Time.deltaTime;
             if(StateCount >= 30.0f)
             {
-                State = "Neutral";
+                State = TileState.Neutral;
                 StateCount = 0.0f;
             }
         }
