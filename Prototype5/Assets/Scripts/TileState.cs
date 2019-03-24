@@ -32,6 +32,9 @@ public class TileState : MonoBehaviour
                 var greeness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
                 color = new Color(0, greeness, 0);
                 break;
+            case "Attack":
+                color = Color.black;
+                break;
             default:
                 color = Color.white;
                 break;

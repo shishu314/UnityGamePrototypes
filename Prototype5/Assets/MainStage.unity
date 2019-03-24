@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 2005693870156808769, guid: bd676da8deea9114a88773dc4953720c, type: 3}
+  player: {fileID: 1500285337}
+  attackX: 0
+  attackY: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -300,3 +303,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73474c1ea4c78634dacd3132efae078c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
