@@ -21,10 +21,11 @@ public class StageControl : MonoBehaviour
                 tiles[i,j] = Instantiate(tile, new Vector3(i * 1.0F - 7.5F, j * 1.0F - 4.5F, 0), Quaternion.identity);
             }
         }
-        attackX = -1;
-        attackY = -1;
+        player = Instantiate(player);
         player.x = 7;
         player.y = 2;
+        attackX = -1;
+        attackY = -1;
     }
 
     void GenerateTile()
