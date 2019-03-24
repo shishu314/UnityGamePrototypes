@@ -29,15 +29,15 @@ public class Tile : MonoBehaviour
         switch(State)
         {
             case TileState.Water:
-                var blueness = Mathf.Clamp(StateCount, 0.0f, 3.0f)/3.0f;
+                var blueness = Mathf.Clamp(StateCount, 0.0f, 2.0f)/2.0f;
                 color = new Color(0, 0, blueness);
                 break;
             case TileState.Lava:
-                var redness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
+                var redness = Mathf.Clamp(StateCount, 0.0f, 2.0f) / 2.0f;
                 color = new Color(redness, 0, 0);
                 break;
             case TileState.Poison:
-                var greeness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
+                var greeness = Mathf.Clamp(StateCount, 0.0f, 2.0f) / 2.0f;
                 color = new Color(0, greeness, 0);
                 break;
             case TileState.Attack:
@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
         if(State != TileState.Neutral)
         {
             StateCount += Time.deltaTime;
-            if(StateCount >= 30.0f)
+            if(StateCount >= 15.0f)
             {
                 State = TileState.Neutral;
                 StateCount = 0.0f;
