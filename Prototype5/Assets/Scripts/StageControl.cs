@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageControl : MonoBehaviour
 {
@@ -81,9 +82,13 @@ public class StageControl : MonoBehaviour
             attackX = attackY = -1;
             bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - 100, 0, bossHealthBar.TotalHP);
         }
-        if (tiles[player.x, player.y].State != Tile.TileState.Neutral)
+        if (tiles[player.x, player.y].State != Tile.TileState.Neutral && tiles[player.x, player.y].StateCount >= 3.0f)
         {
             playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
         }
+        if(bossHealthBar.HP == 0)
+            SceneManager.LoadScene("Win", LoadSceneMode.Single);
+        if(playerHealthBar.HP == 0)
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
     }
 }
