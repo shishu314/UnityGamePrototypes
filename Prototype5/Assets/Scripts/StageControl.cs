@@ -83,15 +83,41 @@ public class StageControl : MonoBehaviour
 
     void CheckPlayerInHazard()
     {
+        var damageTaken = false;
         if (tiles[player.x, player.y].State != Tile.TileState.Neutral && tiles[player.x, player.y].StateCount >= 2.0f)
         {
-            playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
-            if (attackX >= 0 && attackY >= 0)
+            switch(tiles[player.x, player.y].State)
             {
-                tiles[attackX, attackY].Neutralize();
-                attackX = attackY = -1;
-                player.steps = new HashSet<KeyValuePair<int, int>>();
+                case Tile.TileState.Water:
+                    if(player.classChoice == PlayerClass.Class.Human || player.classChoice == PlayerClass.Class.IronGiant)
+                    {
+                        playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
+                        damageTaken = true;
+                    }
+                    break;
+                case Tile.TileState.Lava:
+                    if (player.classChoice == PlayerClass.Class.Human || player.classChoice == PlayerClass.Class.IronGiant)
+                    {
+                        playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
+                        damageTaken = true;
+                    }
+                    break;
+                case Tile.TileState.Poison:
+                    if (player.classChoice == PlayerClass.Class.Human || player.classChoice == PlayerClass.Class.Undead)
+                    {
+                        playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
+                        damageTaken = true;
+                    }
+                    break;
+                default:
+                    break;
             }
+        }
+        if (damageTaken && attackX >= 0 && attackY >= 0)
+        {
+            tiles[attackX, attackY].Neutralize();
+            attackX = attackY = -1;
+            player.steps = new HashSet<KeyValuePair<int, int>>();
         }
     }
 
