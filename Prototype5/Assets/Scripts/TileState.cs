@@ -17,19 +17,23 @@ public class TileState : MonoBehaviour
     void Update()
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        var color = Color.white;
+        Color color;
         switch(State)
         {
             case "Water":
-                color = Color.blue;
+                var blueness = Mathf.Clamp(StateCount, 0.0f, 3.0f)/3.0f;
+                color = new Color(0, 0, blueness);
                 break;
             case "Lava":
-                color = Color.red;
+                var redness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
+                color = new Color(redness, 0, 0);
                 break;
             case "Poison":
-                color = Color.green;
+                var greeness = Mathf.Clamp(StateCount, 0.0f, 3.0f) / 3.0f;
+                color = new Color(0, greeness, 0);
                 break;
             default:
+                color = Color.white;
                 break;
         }
         spriteRenderer.color = color;
