@@ -32,7 +32,7 @@ public class StageControl : MonoBehaviour
     void GenerateTile()
     {
         var rand = Random.Range(0, 1000);
-        if (rand <= 10)
+        if (rand <= 20)
         {
             var x = Random.Range(0, 15);
             var y = Random.Range(0, 5);
@@ -41,7 +41,7 @@ public class StageControl : MonoBehaviour
                 x = Random.Range(0, 15);
                 y = Random.Range(0, 5);
             }
-            if (rand < 6)
+            if (rand < 19)
             {
                 var stateRand = Random.Range(1, 4);
                 switch (stateRand)
@@ -80,6 +80,10 @@ public class StageControl : MonoBehaviour
             tiles[attackX, attackY].State = Tile.TileState.Neutral;
             attackX = attackY = -1;
             bossHealthBar.HP = Mathf.Clamp(bossHealthBar.HP - 100, 0, bossHealthBar.TotalHP);
+        }
+        if (tiles[player.x, player.y].State != Tile.TileState.Neutral)
+        {
+            playerHealthBar.HP = Mathf.Clamp(playerHealthBar.HP - 1, 0, playerHealthBar.TotalHP);
         }
     }
 }
