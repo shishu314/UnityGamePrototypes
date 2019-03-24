@@ -7,6 +7,7 @@ public class StageControl : MonoBehaviour
     public TileState tile;
     private TileState[,] tiles;
     public PlayerMovement player;
+    public HPBar healthBar;
     public int attackX;
     public int attackY;
     // Start is called before the first frame update
@@ -80,6 +81,7 @@ public class StageControl : MonoBehaviour
         {
             tiles[attackX, attackY].State = "Neutral";
             attackX = attackY = -1;
+            healthBar.HP = Mathf.Clamp(healthBar.HP - 100, 0, healthBar.TotalHP);
         }
     }
 }
