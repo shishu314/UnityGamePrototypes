@@ -9,12 +9,12 @@ public class StageControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tiles = new TileState[5,5];
-        for(var i = 0; i < 5; ++i)
+        tiles = new TileState[15,5];
+        for(var i = 0; i < 15; ++i)
         {
             for (var j = 0; j < 5; ++j)
             {
-                tiles[i,j] = Instantiate(tile, new Vector3(i * 1.0F - 2.5F, j * 1.0F - 4.5F, 0), Quaternion.identity);
+                tiles[i,j] = Instantiate(tile, new Vector3(i * 1.0F - 7.5F, j * 1.0F - 4.5F, 0), Quaternion.identity);
             }
         }
     }
@@ -22,17 +22,16 @@ public class StageControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(Random.Range(1,100) < 10)
+        if(Random.Range(0,1000) < 5)
         {
-            var x = Random.Range(0, 4);
-            var y = Random.Range(0, 4);
+            var x = Random.Range(0, 15);
+            var y = Random.Range(0, 5);
             while(tiles[x,y].State != "Neutral")
             {
-                x = Random.Range(0, 4);
-                y = Random.Range(0, 4);
+                x = Random.Range(0, 15);
+                y = Random.Range(0, 5);
             }
-            var stateRand = Random.Range(1, 3);
+            var stateRand = Random.Range(1, 4);
             switch(stateRand)
             {
                 case 1:
@@ -48,6 +47,5 @@ public class StageControl : MonoBehaviour
                     break;
             }
         }
-        */
     }
 }

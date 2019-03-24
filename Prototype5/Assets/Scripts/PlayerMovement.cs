@@ -37,6 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool InBounds(Vector3 Coordinates)
     {
-        return Coordinates.x >= -2.5 && Coordinates.x <= 1.5 && Coordinates.y >= -4.5 && Coordinates.y <= 0.5;
+        return Coordinates.x >= -7.5 && Coordinates.x <= 6.5 && Coordinates.y >= -4.5 && Coordinates.y <= -0.5;
     }
 }

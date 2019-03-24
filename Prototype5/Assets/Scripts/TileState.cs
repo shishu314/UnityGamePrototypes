@@ -5,11 +5,12 @@ using UnityEngine;
 public class TileState : MonoBehaviour
 {
     public string State;
-    public float StateCount = 0;
+    public float StateCount;
     // Start is called before the first frame update
     void Start()
     {
-        
+        State = "Neutral";
+        StateCount = 0.0f;
     }
 
     // Update is called once per frame
@@ -35,9 +36,10 @@ public class TileState : MonoBehaviour
         if(State != "Neutral")
         {
             StateCount += Time.deltaTime;
-            if(StateCount >= 8.0)
+            if(StateCount >= 30.0f)
             {
                 State = "Neutral";
+                StateCount = 0.0f;
             }
         }
     }
