@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HPBar : MonoBehaviour
+public class BossHPBar : MonoBehaviour
 {
     public float TotalHP;
     public float HP;
