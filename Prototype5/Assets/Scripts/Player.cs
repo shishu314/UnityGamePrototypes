@@ -8,10 +8,30 @@ public class Player : MonoBehaviour
     public int y;
     public int baseAttack = 60;
     public HashSet<KeyValuePair<int, int>> steps;
+    public PlayerClass.Class classChoice;
     // Start is called before the first frame update
     void Start()
     {
         steps = new HashSet<KeyValuePair<int, int>>();
+        classChoice = PlayerClass.ClassChoice;
+        switch(classChoice)
+        {
+            case PlayerClass.Class.Slime:
+                baseAttack = 1;
+                break;
+            case PlayerClass.Class.Undead:
+                baseAttack = 10;
+                break;
+            case PlayerClass.Class.IronGiant:
+                baseAttack = 30;
+                break;
+            case PlayerClass.Class.Human:
+                baseAttack = 60;
+                break;
+            default:
+                baseAttack = 0;
+                break;
+        }
     }
 
     // Update is called once per frame

@@ -16,6 +16,7 @@ public class StageControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerClass.ClassChoice = PlayerClass.Class.Human;
         tiles = new Tile[15,5];
         for(var i = 0; i < 15; ++i)
         {
