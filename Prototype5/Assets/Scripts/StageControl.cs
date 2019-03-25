@@ -61,7 +61,7 @@ public class StageControl : MonoBehaviour
             {
                 if (attackX < 0 && attackY < 0)
                 {
-                    tiles[x, y].State = Tile.TileState.Attack;
+                    tiles[x, y].ChangeToSword();
                     attackX = x;
                     attackY = y;
                 }

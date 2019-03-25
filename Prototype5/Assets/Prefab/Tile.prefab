@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915e928216eed7641bfee43587f9dd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLava: 0
-  IsWater: 0
-  IsPoison: 0
+  State: 0
   StateCount: 0
+  SwordSprite: {fileID: 21300000, guid: 3b02e9535d2e995489be684847237c06, type: 3}
+  TileSprite: {fileID: 21300000, guid: cf5c68c6d251d784fa34b099356cbb3f, type: 3}

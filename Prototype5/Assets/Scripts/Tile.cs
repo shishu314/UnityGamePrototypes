@@ -6,6 +6,8 @@ public class Tile : MonoBehaviour
 {
     public TileState State;
     public float StateCount;
+    public Sprite SwordSprite;
+    public Sprite TileSprite;
     public enum TileState
     {
         Neutral,
@@ -41,7 +43,7 @@ public class Tile : MonoBehaviour
                 color = new Color(0, greeness, 0);
                 break;
             case TileState.Attack:
-                color = Color.black;
+                color = Color.white;
                 break;
             default:
                 color = Color.white;
@@ -62,5 +64,18 @@ public class Tile : MonoBehaviour
     {
         State = TileState.Neutral;
         StateCount = 0.0f;
+        var renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = TileSprite;
+        var transform = GetComponent<Transform>();
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
+
+    public void ChangeToSword()
+    {
+        State = TileState.Attack;
+        var renderer = GetComponent<SpriteRenderer>();
+        var transform = GetComponent<Transform>();
+        transform.localScale = new Vector3(0.5f, 0.5f, 1.0f);
+        renderer.sprite = SwordSprite;
     }
 }
