@@ -34,12 +34,12 @@ public class StageControl : MonoBehaviour
     void GenerateTile()
     {
         var rand = Random.Range(0, 100);
-        if (rand <= 5)
+        if (rand <= 7)
         {
             var x = Random.Range(0, 15);
             var y = Random.Range(0, 5);
             tiles[x, y].StateCount = 0.0f;
-            if (rand < 4 && x != attackX && y != attackY)
+            if (rand < 7 && x != attackX && y != attackY)
             {
                 var stateRand = Random.Range(1, 4);
                 switch (stateRand)
