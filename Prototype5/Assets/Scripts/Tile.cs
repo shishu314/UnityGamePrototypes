@@ -53,7 +53,7 @@ public class Tile : MonoBehaviour
         if(State != TileState.Neutral)
         {
             StateCount += Time.deltaTime;
-            if(StateCount >= 15.0f)
+            if(StateCount >= 15.0f && State != TileState.Attack)
             {
                 Neutralize();
             }

@@ -84,10 +84,21 @@ public class Player : MonoBehaviour
     public float GetAttackPower()
     {
         var multiplier = 1.0f;
-        foreach(var i in steps)
+        switch(classChoice)
         {
-            multiplier *= 1.1f;
+            case PlayerClass.Class.Undead:
+                multiplier = 1.005f;
+                break;
+            case PlayerClass.Class.IronGiant:
+                multiplier = 1.01f;
+                break;
+            case PlayerClass.Class.Human:
+                multiplier = 1.02f;
+                break;
+            default:
+                break;
         }
+        multiplier = Mathf.Pow(multiplier, steps.Count);
         return Mathf.Round(multiplier * baseAttack);
     }
 }
