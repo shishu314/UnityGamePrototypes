@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair: {fileID: 746203706}
   movementSpeed: 7
-  jumpPower: 20
+  jumpPower: 7
 --- !u!50 &1655211882
 Rigidbody2D:
   serializedVersion: 4
