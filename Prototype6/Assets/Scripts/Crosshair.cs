@@ -6,11 +6,12 @@ public class Crosshair : MonoBehaviour
 {
     public Player player;
     public Arrow arrow;
-    private List<Arrow> arrows;
+    private Arrow currentArrow;
+    public float arrowVelocity;
     // Start is called before the first frame update
     void Start()
     {
-        arrows = new List<Arrow>();
+
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class Crosshair : MonoBehaviour
         };
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !currentArrow)
             SpawnArrow();
     }
 
@@ -37,6 +38,8 @@ public class Crosshair : MonoBehaviour
         arrowPosition.y += 1.5f * Mathf.Sin(angle);
         arrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
         arrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
-        Debug.Log(angle);
+        arrow.angle = angle;
+        arrow.velocity = arrowVelocity;
+        currentArrow = arrow;
     }
 }

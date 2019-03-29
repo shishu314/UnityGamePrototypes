@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1655211881}
   arrow: {fileID: 286880443726069228, guid: 5ddc0a45f93ed574a8cb501f7db312e4, type: 3}
+  arrowVelocity: 5
 --- !u!1 &1655211878
 GameObject:
   m_ObjectHideFlags: 0
