@@ -36,10 +36,19 @@ public class Crosshair : MonoBehaviour
         var arrowPosition = playerPosition;
         arrowPosition.x += 1.5f * Mathf.Cos(angle);
         arrowPosition.y += 1.5f * Mathf.Sin(angle);
-        arrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
-        arrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
-        arrow.angle = angle;
-        arrow.velocity = arrowVelocity;
-        currentArrow = arrow;
+        currentArrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
+        currentArrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
+        currentArrow.angle = angle;
+        currentArrow.velocity = arrowVelocity;
+    }
+
+    public void DestoryArrows()
+    {
+        if (currentArrow)
+        {
+            var arrowBody = currentArrow.GetComponent<Rigidbody2D>();
+            if(arrowBody.bodyType == RigidbodyType2D.Static)
+                Destroy(currentArrow.gameObject);
+        }
     }
 }
