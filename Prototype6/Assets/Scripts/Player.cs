@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float jumpPower;
     private Rigidbody2D body;
     private bool onGround;
+    public bool facingLeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,8 @@ public class Player : MonoBehaviour
         var crossHairX = crosshair.transform.position.x;
         var playerX = transform.position.x;
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.flipX = playerX > crossHairX;
+        facingLeft = playerX > crossHairX;
+        spriteRenderer.flipX = facingLeft;
         float horizontal = Input.GetAxis("Horizontal");
         HandleMovement(horizontal);
         if (Input.GetKeyDown(KeyCode.W))

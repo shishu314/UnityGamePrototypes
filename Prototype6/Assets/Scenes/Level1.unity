@@ -414,6 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbaf5b7466c8a94cb5dd2e5ebcfe6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1655211881}
+  arrow: {fileID: 286880443726069228, guid: 5ddc0a45f93ed574a8cb501f7db312e4, type: 3}
 --- !u!1 &1655211878
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +513,7 @@ MonoBehaviour:
   crosshair: {fileID: 746203706}
   movementSpeed: 7
   jumpPower: 7
+  facingLeft: 0
 --- !u!50 &1655211882
 Rigidbody2D:
   serializedVersion: 4
