@@ -28,15 +28,15 @@ public class Crosshair : MonoBehaviour
 
     void SpawnArrow()
     {
-        arrow = Instantiate(arrow, transform.position, Quaternion.identity);
-        var rotation = arrow.transform.localRotation;
-        if(player.facingLeft)
-        {
-            rotation.z = 1.5f;
-        } else
-        {
-            rotation.z = -0.6f;
-        }
-        arrow.transform.localRotation = rotation;
+        var playerPosition = player.transform.position;
+        var crosshairPosition = transform.position;
+        var dir = crosshairPosition - playerPosition;
+        var angle = Mathf.Atan2(dir.y, dir.x);
+        var arrowPosition = playerPosition;
+        arrowPosition.x += 1.5f * Mathf.Cos(angle);
+        arrowPosition.y += 1.5f * Mathf.Sin(angle);
+        arrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
+        arrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
+        Debug.Log(angle);
     }
 }

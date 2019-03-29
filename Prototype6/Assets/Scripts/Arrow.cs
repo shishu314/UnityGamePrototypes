@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float velocityX;
-    public float velocityY;
+    public float velocity;
     // Start is called before the first frame update
     void Start()
     {
