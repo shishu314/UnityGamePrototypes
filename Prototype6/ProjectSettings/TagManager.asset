@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bullseye
+    uniqueID: 1334848373
+    locked: 0
+  - name: Crosshair
+    uniqueID: 1490513399
+    locked: 0
