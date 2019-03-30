@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(float horizontal)
     {
-        Vector2 force = new Vector2(horizontal * movementSpeed, 0);
-        body.AddForce(force);
+        Vector2 velocity = new Vector2(horizontal * movementSpeed, body.velocity.y);
+        body.velocity = velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
