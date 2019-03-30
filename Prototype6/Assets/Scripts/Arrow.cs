@@ -21,7 +21,7 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("ArrowCollide"))
+        if(collision.gameObject.CompareTag("ArrowCollide") || collision.gameObject.CompareTag("Enemy"))
         {
             var body = GetComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Static;
