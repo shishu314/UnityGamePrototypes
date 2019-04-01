@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
                 onGround = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
     }
 
     private void HandleMovement(float horizontal)
