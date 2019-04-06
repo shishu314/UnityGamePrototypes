@@ -9,10 +9,11 @@ public class Crosshair : MonoBehaviour
     public int arrowCount;
     public float arrowForce;
     public float timeHeld = 0.0f;
+    public Vector3 originalScale;
     // Start is called before the first frame update
     void Start()
     {
-
+        originalScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -35,6 +36,9 @@ public class Crosshair : MonoBehaviour
             SpawnArrow();
             timeHeld = 0.0f;
         }
+
+        var scale = Mathf.Clamp(timeHeld / 4.0f + 1.0f, 1.0f, 1.5f);
+        transform.localScale = new Vector3(originalScale.x / scale, originalScale.y / scale, originalScale.z);
     }
 
     void SpawnArrow()
