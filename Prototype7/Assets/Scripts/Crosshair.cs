@@ -6,9 +6,9 @@ public class Crosshair : MonoBehaviour
 {
     public Player player;
     public Arrow arrow;
-    private Arrow currentArrow;
+    public int arrowCount;
     public float arrowForce;
-    public float powerHeld;
+    public float timeHeld = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +24,17 @@ public class Crosshair : MonoBehaviour
         };
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
-        if (Input.GetMouseButtonDown(0) && !currentArrow)
+        if (Input.GetMouseButton(0))
+        {
+            timeHeld += Time.deltaTime;
+            timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
             SpawnArrow();
+            timeHeld = 0.0f;
+        }
     }
 
     void SpawnArrow()
@@ -37,19 +46,11 @@ public class Crosshair : MonoBehaviour
         var arrowPosition = playerPosition;
         arrowPosition.x += 1.5f * Mathf.Cos(angle);
         arrowPosition.y += 1.5f * Mathf.Sin(angle);
-        currentArrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
+        var currentArrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
         currentArrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
         currentArrow.angle = angle;
-        currentArrow.velocity = arrowForce;
-    }
-
-    public void DestoryArrows()
-    {
-        if (currentArrow)
-        {
-            var arrowBody = currentArrow.GetComponent<Rigidbody2D>();
-            if(arrowBody.bodyType == RigidbodyType2D.Static)
-                Destroy(currentArrow.gameObject);
-        }
+        var arrowBody = currentArrow.GetComponent<Rigidbody2D>();
+        var force = arrowForce + timeHeld;
+        arrowBody.AddForce(new Vector3(Mathf.Cos(angle)* force, Mathf.Sin(angle) * force, 0));
     }
 }
