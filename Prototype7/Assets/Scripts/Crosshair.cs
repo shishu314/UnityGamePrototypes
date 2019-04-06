@@ -51,8 +51,6 @@ public class Crosshair : MonoBehaviour
         arrowPosition.x += 1.5f * Mathf.Cos(angle);
         arrowPosition.y += 1.5f * Mathf.Sin(angle);
         var currentArrow = Instantiate(arrow, arrowPosition, Quaternion.identity);
-        currentArrow.transform.Rotate(new Vector3(0, 0, -63f + angle * Mathf.Rad2Deg), Space.Self);
-        currentArrow.angle = angle;
         var arrowBody = currentArrow.GetComponent<Rigidbody2D>();
         var force = arrowForce + timeHeld;
         arrowBody.AddForce(new Vector3(Mathf.Cos(angle)* force, Mathf.Sin(angle) * force, 0));
