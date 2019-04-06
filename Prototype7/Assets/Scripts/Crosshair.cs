@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Crosshair : MonoBehaviour
 {
@@ -14,6 +15,20 @@ public class Crosshair : MonoBehaviour
     void Start()
     {
         originalScale = transform.localScale;
+        switch(SceneManager.GetActiveScene().name)
+        {
+            case "Level1":
+                arrowCount = 1337;
+                break;
+            case "Level2":
+                arrowCount = 10;
+                break;
+            case "Level3":
+                arrowCount = 5;
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -25,7 +40,7 @@ public class Crosshair : MonoBehaviour
         };
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && arrowCount > 0)
         {
             SoundManager.PlaySound("pullBow");
         }
@@ -36,10 +51,11 @@ public class Crosshair : MonoBehaviour
             timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && arrowCount > 0)
         {
             SpawnArrow();
             timeHeld = 0.0f;
+            arrowCount -= 1;
         }
 
         var scale = Mathf.Clamp(timeHeld / 4.0f + 1.0f, 1.0f, 1.5f);
