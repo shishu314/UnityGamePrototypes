@@ -25,6 +25,11 @@ public class Crosshair : MonoBehaviour
         };
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
+        if(Input.GetMouseButtonDown(0))
+        {
+            SoundManager.PlaySound("pullBow");
+        }
+
         if (Input.GetMouseButton(0))
         {
             timeHeld += Time.deltaTime;
