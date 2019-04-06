@@ -63,6 +63,7 @@ public class Arrow : MonoBehaviour
             var body = GetComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Static;
             stuckPosition = transform.position;
+            SoundManager.PlaySound("arrowHit");
         }
     }
 }
