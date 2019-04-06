@@ -45,7 +45,7 @@ public class Crosshair : MonoBehaviour
             SoundManager.PlaySound("pullBow");
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && arrowCount > 0)
         {
             timeHeld += Time.deltaTime;
             timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
