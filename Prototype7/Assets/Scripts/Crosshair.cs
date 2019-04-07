@@ -47,8 +47,15 @@ public class Crosshair : MonoBehaviour
 
         if (Input.GetMouseButton(0) && arrowCount > 0)
         {
-            timeHeld += Time.deltaTime;
-            timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
+            if (player.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            {
+                timeHeld += Time.deltaTime;
+                timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
+            } else
+            {
+                timeHeld -= Time.deltaTime;
+                timeHeld = Mathf.Clamp(timeHeld, 0, 4.0f);
+            }
         }
 
         if (Input.GetMouseButtonUp(0) && arrowCount > 0)
