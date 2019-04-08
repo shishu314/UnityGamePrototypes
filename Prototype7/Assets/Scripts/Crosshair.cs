@@ -42,6 +42,7 @@ public class Crosshair : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && arrowCount > 0)
         {
+            player.movementSpeed /= 2;
             SoundManager.PlaySound("pullBow");
         }
 
@@ -63,6 +64,7 @@ public class Crosshair : MonoBehaviour
             SpawnArrow();
             timeHeld = 0.0f;
             arrowCount -= 1;
+            player.movementSpeed *= 2;
         }
 
         var scale = Mathf.Clamp(timeHeld / 4.0f + 1.0f, 1.0f, 1.5f);
